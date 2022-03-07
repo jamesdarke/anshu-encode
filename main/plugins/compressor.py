@@ -12,7 +12,7 @@
 #
 #  License can be found in < https://github.com/vasusen-code/VIDEOconvertor/blob/public/LICENSE> .
 
-from .. import Drone, BOT_UN, LOG_CHANNEL
+from .. import BOT_UN, LOG_CHANNEL
 
 import asyncio, time, subprocess, re, os, ffmpeg
 from datetime import datetime as dt
@@ -36,8 +36,8 @@ async def compress(event, msg, ffmpeg_cmd=0, ps_name=None):
     _ps = "COMPRESS"
     if ps_name != "**COMPRESSING:**":
         _ps = "ENCODE"
-    Drone = event.client
-    edit = await Drone.send_message(event.chat_id, "Trying to process.", reply_to=msg.id)
+    event = event.client
+    edit = await event.send_message(event.chat_id, "Trying to process.", reply_to=msg.id)
     log = await LOG_START(event, f'**{str(_ps)} PROCESS STARTED**\n\n[Bot is busy now]({SUPPORT_LINK})')
     log_end_text = f'**{_ps} PROCESS FINISHED**\n\n[Bot is free now]({SUPPORT_LINK})'
     DT = time.time()
