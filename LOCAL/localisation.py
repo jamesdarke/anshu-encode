@@ -35,7 +35,7 @@ spam_notice = "This bot is hosted on railway but we support only one work at tim
 
 JPG = "LOCAL/video_convertor.jpg"
 
-JPG0 = 'https://telegra.ph/file/d98c559b56ef884ef3bad.jpg'
+JPG0 = 'https://telegra.ph/file/1d0fd1de44d45693d1a0d.jpg'
 
 JPG2 = "LOCAL/20211215_165751.jpg"
 
