@@ -13,7 +13,7 @@
 #  License can be found in < https://github.com/vasusen-code/VIDEOconvertor/blob/public/LICENSE> .
 
 import heroku3 
-from .. import Drone, AUTH_USERS, ACCESS_CHANNEL, MONGODB_URI
+from .. import AUTH_USERS, ACCESS_CHANNEL, MONGODB_URI
 from telethon import events , Button
 from decouple import config
 from main.Database.database import Database
@@ -33,7 +33,7 @@ async def force_sub(id):
         FORCESUB = int("-100" + str(FORCESUB))
     ok = False
     try:
-        x = await Drone(GetParticipantRequest(channel=int(FORCESUB), participant=int(id)))
+        x = await (GetParticipantRequest(channel=int(FORCESUB), participant=int(id)))
         left = x.stringify()
         if 'left' in left:
             ok = True
@@ -67,25 +67,6 @@ async def rem_thumbnail(event):
     await db.rem_thumb_link(event.sender_id)
     await edit.edit('Removed!')
     
-#Heroku--------------------------------------------------------------------------------------------------------------
-   
-async def heroku_restart():
-    HEROKU_API = config("HEROKU_API", default=None)
-    HEROKU_APP_NAME = config("HEROKU_APP_NAME", default=None)
-    x = None
-    if not HEROKU_API and HEROKU_APP_NAME:
-        x = None
-    else:
-        try:
-            acc = heroku3.from_key(HEROKU_API)
-            bot = acc.apps()[HEROKU_APP_NAME]
-            bot.restart()
-            x = True
-        except Exception as e:
-            print(e)
-            x = False
-    return x
-
 #Logging events on tg---------------------------------------------------------------------------------------------
 
 async def LOG_START(event, ps_name):
@@ -105,7 +86,7 @@ async def LOG_END(event, ps_name):
         chat = int("-100" + str(LOG_ID))
     await event.client.send_message(int(chat), f'{ps_name}', link_preview=False)
 
-@Drone.on(events.NewMessage(incoming=True, from_users=AUTH_USERS, pattern="^/msg (.*)"))
+await (events.NewMessage(incoming=True, from_users=AUTH_USERS, pattern="^/msg (.*)"))
 async def msg(event):
     ok = await event.get_reply_message()
     if not ok:
@@ -113,7 +94,7 @@ async def msg(event):
     user = event.pattern_match.group(1)
     if not user:
         await event.reply("Give the user id you want me to send message. ")
-    await Drone.send_message(int(user) , ok )
+    await event.send_message(int(user) , ok )
     await event.reply("Messsage sent.")
     
 #Listing--------------------------------------------------------------------------------------------------------------
