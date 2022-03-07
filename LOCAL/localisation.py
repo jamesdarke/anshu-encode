@@ -31,7 +31,7 @@ source_text = "**LET'S PLAY WITH YOUR FILES**"
 
 DEV = "https://t.me/Anshu888o"
 
-spam_notice = "This bot is hosted on heroku, and hence can just run one process at a time.Spamming the bot or encoding adult videos will lead you to a ban."
+spam_notice = "This bot is hosted on railway but we support only one work at time\n.Spamming the bot or encoding adult videos will lead you to a ban."
 
 JPG = "LOCAL/video_convertor.jpg"
 
